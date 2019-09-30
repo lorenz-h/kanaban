@@ -91,7 +91,7 @@ function get_active_chars(){
 }
 
 function create_charset_checkbox(state, name){
-    var entity_id = "status_btn_"+name.replace(" ", "_");
+    var entity_id = "status_btn_"+name.replace(" ", "_").replace(".", "_");
     var html_entity = $([
         "<div>",
         "<input type='checkbox' name='"+name+"' id='"+entity_id+"'><label for='"+entity_id+"'>"+name+"</label>",
@@ -112,7 +112,7 @@ function populate_settings_menu(){
 
 function update_charset_states(){
     charsets.forEach(function (chset, index) {
-        var entity_id = "#status_btn_"+chset["name"].replace(" ", "_");
+        var entity_id = "#status_btn_"+chset["name"].replace(" ", "_").replace(".", "_");
         console.log(entity_id, $(entity_id).prop("checked"));
         chset["active"] = $(entity_id).prop("checked");
     });
