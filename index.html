@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#664FBB">
+    <title>Kanaban</title>
+    <link rel="stylesheet" href="foundation/css/foundation.css">
+    <link rel="stylesheet" href="foundation/css/app.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css">
+  </head>
+  
+    <body>
+        
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x align-middle" style="height:100vh; padding: 0 0 0 0;">
+                <div class="cell small-12 medium-offset-3 medium-6 " id="main_menu">
+                        
+                    
+                    <span style="margin-bottom:0.5em;font-size:4em;color:white;">かなばん</span>
+                    <div id="main_menu_button_wrap">
+                        <a href="#" class="button large small-only-expanded main_menu_button" id="start_game">Play Now</a>
+                        <a href="#" class="button large small-only-expanded main_menu_button" id="open_settings">Settings</a>
+                    </div>
+                    
+                    
+                        
+                </div>
+                
+                <div class="cell small-12 medium-offset-3 medium-6 hide align-middle screen_card" id="game_screen">
+                    <div style="width:100%;">
+                        <i class="fi-x gametop_button" id="stop_game" style="float: right;margin-left:0.3em;"></i>
+                        <i class="fi-next gametop_button" id="reveal_answer" style="float: right;"></i>
+                    </div>
+                    <p id="char_box"></p>
+                    <input onblur="this.focus()" autocomplete='off' spellcheck='false' autocapitalize="none" autocorrect='off' autofocus type="text" placeholder="" id="answer_box">
+                    <div>
+                        <span>Correct:</span>
+                        <span id="correct_responses_indicator"></span>
+                    </div>
+                    <div>
+                        <span>Wrong:</span>
+                        <span id="wrong_responses_indicator"></span>
+                    </div>
+                        
+                </div>
+
+                <div class="cell small-12 medium-offset-3 medium-6 hide align-middle screen_card" id="settings_screen">
+                    <div style="width:100%;">
+                        <i class="fi-x gametop_button" id="close_settings" style="float: right;margin-left:0.3em;"></i>
+                    </div>
+                    <div class="grid-x grid-padding-x">
+                        <div class="cell small-12">
+                                <p>Choose which sets of characters you would like to practice:</p>
+                                <div id="chset_status_wrapper"></div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+                  
+        <script src="foundation/js/vendor/jquery.js"></script>
+        <script src="foundation/js/vendor/what-input.js"></script>
+        <script src="foundation/js/vendor/foundation.js"></script>
+        <script src="foundation/js/app.js"></script>
+        
+        <script src="js/hiragana.js"></script>
+        <script src="js/game.js"></script>
+
+        <script>
+            $("#start_game").click(function(){
+                start_game();
+            });
+            $("#open_settings").click(function(){
+                $("#main_menu").addClass("hide");
+                populate_settings_menu();
+                $("#settings_screen").removeClass("hide");
+
+            });
+            $("#close_settings").click(function(){
+                $("#settings_screen").addClass("hide");
+                update_charset_states();
+                $("#main_menu").removeClass("hide");
+            });
+
+            $("#stop_game").click(function(){
+                stop_game();
+            });
+            $("#reveal_answer").click(function(){
+                reveal_answer();
+            });
+            $('#answer_box').keypress(function (e) {
+                if (e.which == 13) {
+                    process_answer()
+                    return false;    //this prevents default behaviour
+                }
+            });
+            
+
+            var game_state = {};
+
+        </script>
+    </body>
+</html>
