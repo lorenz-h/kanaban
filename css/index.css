@@ -1,5 +1,5 @@
 body {
-  background-image:url("../background.jpg");
+  background-image:url("../img/background.jpg");
   height: 100%;
   width:100%;
 
@@ -15,6 +15,9 @@ body {
   font-weight: 100;
 }
 
+#share_best_streak{
+  color: black;
+}
 .main_menu_button{
   background-color:rgba(0, 0, 0, 0.1);
 }

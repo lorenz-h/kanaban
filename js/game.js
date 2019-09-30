@@ -24,8 +24,10 @@ function process_answer() {
         new_kana();
         $("#game_screen").removeClass("wrong");
         $("#game_screen").addClass("correct");
-        game_state.correct_responses += 1;
-        update_response_display();
+        
+        game_state.streak += 1;
+        update_best_streak();
+        update_stats_display();
         reset_timeout();
         
         
@@ -33,16 +35,24 @@ function process_answer() {
         $("#answer_box").val("");
         $("#game_screen").removeClass("correct");
         $("#game_screen").addClass("wrong");
-        game_state.wrong_responses += 1;
-        update_response_display();
+        
+        update_best_streak();
+        game_state.streak = 0
+        update_stats_display();
         reset_timeout()
         
     }
 };
 
-function update_response_display(){
-    $("#wrong_responses_indicator").text(game_state.wrong_responses);
-    $("#correct_responses_indicator").text(game_state.correct_responses);
+function update_best_streak(){
+    if (game_state.streak > game_state.best_streak){
+        game_state.best_streak = game_state.streak
+    }
+}
+
+function update_stats_display(){
+    $("#streak_indicator").text(game_state.streak);
+    $("#best_streak_indicator").text(game_state.best_streak);
 };
 
 function reset_timeout(){
@@ -60,9 +70,7 @@ function reveal_answer(){
     $("#answer_box").val("");
     
 
-
-    game_state.wrong_responses += 1;
-    update_response_display();
+    update_stats_display();
     setTimeout(new_kana, 600);
     reset_timeout();
 };
@@ -110,13 +118,14 @@ function update_charset_states(){
     });
 };
 
+
 function start_game(){
     game_state = {
         curr_kana: "",
         curr_romanji: "",
         timeout_id: 0,
-        correct_responses: 0,
-        wrong_responses: 0,
+        streak: 0,
+        best_streak: 0,
         active_chars: get_active_chars()
     };
 
@@ -127,7 +136,7 @@ function start_game(){
 
     
     new_kana();
-    update_response_display();
+    update_stats_display();
 };
 
 function stop_game(){

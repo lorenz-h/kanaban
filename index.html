@@ -4,8 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#664FBB">
+    
+    <meta property="description"   content="A webapp that lets you practice hiragana." />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#764fbb">
+    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#764fbb">
+
+
+    <meta property="og:title" content="Practice Hiragana" />
+    <meta property="og:image" content="/img/preview.png">
+    
     <title>Kanaban</title>
+
     <link rel="stylesheet" href="foundation/css/foundation.css">
     <link rel="stylesheet" href="foundation/css/app.css">
     <link rel="stylesheet" href="css/index.css">
@@ -18,15 +43,13 @@
             <div class="grid-x grid-padding-x align-middle" style="height:100vh; padding: 0 0 0 0;">
                 <div class="cell small-12 medium-offset-3 medium-6 " id="main_menu">
                         
+                    <img src="/img/title_white.svg" alt="かなばん" style="height:6em;margin-bottom:2em"/>
                     
-                    <span style="margin-bottom:0.5em;font-size:4em;color:white;">かなばん</span>
                     <div id="main_menu_button_wrap">
                         <a href="#" class="button large small-only-expanded main_menu_button" id="start_game">Play Now</a>
                         <a href="#" class="button large small-only-expanded main_menu_button" id="open_settings">Settings</a>
                     </div>
-                    
-                    
-                        
+
                 </div>
                 
                 <div class="cell small-12 medium-offset-3 medium-6 hide align-middle screen_card" id="game_screen">
@@ -37,12 +60,16 @@
                     <p id="char_box"></p>
                     <input onblur="this.focus()" autocomplete='off' spellcheck='false' autocapitalize="none" autocorrect='off' autofocus type="text" placeholder="" id="answer_box">
                     <div>
-                        <span>Correct:</span>
-                        <span id="correct_responses_indicator"></span>
+                        <span>Current Streak:</span>
+                        <span id="streak_indicator"></span>
                     </div>
                     <div>
-                        <span>Wrong:</span>
-                        <span id="wrong_responses_indicator"></span>
+                        <span>Best Streak:</span>
+                        <span id="best_streak_indicator"></span>
+                        <a id="share_best_streak">
+                            <i class="fi-share"></i>
+                        </a>
+                        
                     </div>
                         
                 </div>
@@ -100,8 +127,24 @@
                 }
             });
             
+            $("#share_best_streak").click(function(){
+                var msg_body = "I just achieved a streak of "+game_state.best_streak+" hiragana characters - I am basically a native speaker! \nCheck out the game at: https://kanaban.hetzel.io";
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+                {
+                    console.log("You are mobile!")
+                    $("#share_best_streak").prop("href", "whatsapp://send?text="+msg_body);
+                    $("#share_best_streak").prop("data-action", "share/whatsapp/share");
+                }
+                else
+                {
+                    console.log('You are not using a mobile device!');
+                    $("#share_best_streak").prop("href", "mailto:?body="+msg_body);
+                }
+            });
 
             var game_state = {};
+
+            
 
         </script>
     </body>
