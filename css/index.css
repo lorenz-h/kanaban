@@ -56,12 +56,22 @@ body {
   background-color:whitesmoke;
   padding: 1em 1em 3em 1em;
 }
-
+.system_seperator{
+  display: none;
+  height: 0.1em;
+  width:100%;
+  background-color:black;
+  margin-top:1em;
+  margin-bottom:1em;
+}
 
 @media screen and (max-width: 39.9375em) {
   .screen_card{
     height:100vh;
     justify-content:flex-start;
+  }
+  .system_seperator{
+    display: block;
   }
 }
 
