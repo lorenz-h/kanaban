@@ -1,3 +1,5 @@
+var charsets = hiragana_charsets.concat(katakana_charsets); 
+
 
 function new_kana() {
     var keys = Object.keys(game_state.active_chars);
@@ -90,8 +92,8 @@ function get_active_chars(){
     return active_chars
 }
 
-function create_charset_checkbox(state, name){
-    var entity_id = "status_btn_"+name.replace(" ", "_").replace(".", "_");
+function create_charset_checkbox(state, name, system){
+    var entity_id = "status_btn_"+system+"_"+name.replace(" ", "_").replace(".", "_");
     var html_entity = $([
         "<div>",
         "<input type='checkbox' name='"+name+"' id='"+entity_id+"'><label for='"+entity_id+"'>"+name+"</label>",
@@ -102,17 +104,44 @@ function create_charset_checkbox(state, name){
 };
 
 function populate_settings_menu(){
-    $("#chset_status_wrapper").empty();
+    $("#hiragana_status_wrapper").empty();
+    $("#katakana_status_wrapper").empty();
     charsets.forEach(function (chset, index) {
-        var html_entity = create_charset_checkbox(chset["active"], chset["name"])
+        var html_entity = create_charset_checkbox(chset["active"], chset["name"], chset["system"])
         console.log("Created settings entry:", html_entity)
-        $("#chset_status_wrapper").append(html_entity)
+        if (chset["system"] == "Hiragana"){
+            $("#hiragana_status_wrapper").append(html_entity)
+        } else {
+            $("#katakana_status_wrapper").append(html_entity)
+        }
+        
     });
 };
 
+function update_kana_sys_children(system=String){
+
+    if (system == "Hiragana"){
+        var status = $("#hiragana_global_tog").prop("checked");
+    } else {
+        var status = $("#katakana_global_tog").prop("checked");
+    }
+    console.log("Updating all sets of system", system, "to status", status);
+    
+    charsets.forEach(function (chset, index) {
+        if (chset["system"] == system){
+            var entity_id = "#status_btn_"+system+"_"+chset["name"].replace(" ", "_").replace(".", "_");
+            // console.log(entity_id, status);
+            chset["active"] = status;
+            $(entity_id).prop("checked", status);
+        }
+        
+    });
+};
+
+
 function update_charset_states(){
     charsets.forEach(function (chset, index) {
-        var entity_id = "#status_btn_"+chset["name"].replace(" ", "_").replace(".", "_");
+        var entity_id = "#status_btn_"+chset["system"]+"_"+chset["name"].replace(" ", "_").replace(".", "_");
         console.log(entity_id, $(entity_id).prop("checked"));
         chset["active"] = $(entity_id).prop("checked");
     });

@@ -7,27 +7,27 @@
     
     <meta property="description"   content="A webapp that lets you practice hiragana." />
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/img/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#764fbb">
-    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#764fbb">
 
 
     <meta property="og:title" content="Practice Hiragana" />
-    <meta property="og:image" content="/img/preview.png">
+    <meta property="og:image" content="img/preview.png">
     
     <title>Kanaban</title>
 
@@ -43,7 +43,7 @@
             <div class="grid-x grid-padding-x align-middle" style="height:100vh; padding: 0 0 0 0;">
                 <div class="cell small-12 medium-offset-3 medium-6 " id="main_menu">
                         
-                    <img src="/img/title_white.svg" alt="かなばん" style="height:6em;margin-bottom:2em"/>
+                    <img src="img/title_white.svg" alt="かなばん" style="height:6em;margin-bottom:2em"/>
                     
                     <div id="main_menu_button_wrap">
                         <a href="#" class="button large small-only-expanded main_menu_button" id="start_game">Play Now</a>
@@ -79,10 +79,16 @@
                         <i class="fi-x gametop_button" id="close_settings" style="float: right;margin-left:0.3em;"></i>
                     </div>
                     <div class="grid-x grid-padding-x">
-                        <div class="cell small-12">
-                                <p>Choose which sets of characters you would like to practice:</p>
-                                <div id="chset_status_wrapper"></div>
+                        <p>Choose which sets of characters you would like to practice:</p>
+                        <div class="cell small-12 medium-6" style="background-color:red;" >
+                            <input type='checkbox' style="font-size:2em";  name='Hiragana' id="hiragana_global_tog"><label for='hiragana_global_tog'>Hiragana</label>
+                            <div id="hiragana_status_wrapper"></div>
                         </div>
+                        <div class="cell small-12 medium-6" style="background-color:green" >
+                                <input type='checkbox' style="font-size:2em";  name='Katakana' id="katakana_global_tog"><label for='katakana_global_tog'>Katakana</label>
+                                <div id="katakana_status_wrapper"></div>
+                        </div>
+                        
                     </div>
                     
 
@@ -96,9 +102,13 @@
         <script src="foundation/js/app.js"></script>
         
         <script src="js/hiragana.js"></script>
+        <script src="js/katakana.js"></script>
         <script src="js/game.js"></script>
 
         <script>
+
+            
+
             $("#start_game").click(function(){
                 start_game();
             });
@@ -125,6 +135,12 @@
                     process_answer()
                     return false;    //this prevents default behaviour
                 }
+            });
+            $("#katakana_global_tog").click(function(){
+                update_kana_sys_children("Katakana");
+            });
+            $("#hiragana_global_tog").click(function(){
+                update_kana_sys_children("Hiragana");
             });
             
             $("#share_best_streak").click(function(){

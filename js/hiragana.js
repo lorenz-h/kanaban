@@ -1,4 +1,5 @@
-var vowels = {
+var hiragana_vowels = {
+    "system": "Hiragana",
     "name": "Vowels",
     "active":true,
     "chars": {
@@ -10,7 +11,8 @@ var vowels = {
     }
 }
 
-var k_group = {
+var hiragana_k_group = {
+    "system": "Hiragana",
     "name": "K Group",
     "active":true,
     "chars": {
@@ -22,7 +24,8 @@ var k_group = {
     }
 }
 
-var s_group = {
+var hiragana_s_group = {
+    "system": "Hiragana",
     "name": "S Group",
     "active":true,
     "chars": {
@@ -35,7 +38,8 @@ var s_group = {
     
 }
 
-var t_group = {
+var hiragana_t_group = {
+    "system": "Hiragana",
     "name": "T Group",
     "active":true,
     "chars": {
@@ -48,7 +52,8 @@ var t_group = {
     
 }
 
-var n_group = {
+var hiragana_n_group = {
+    "system": "Hiragana",
     "name": "N Group",
     "active":true,
     "chars": {
@@ -61,7 +66,8 @@ var n_group = {
     
 }
 
-var h_group = {
+var hiragana_h_group = {
+    "system": "Hiragana",
     "name": "H Group",
     "active":true,
     "chars": {
@@ -73,7 +79,8 @@ var h_group = {
     }   
 }
 
-var m_group = {
+var hiragana_m_group = {
+    "system": "Hiragana",
     "name": "M Group",
     "active":true,
     "chars": {
@@ -86,7 +93,8 @@ var m_group = {
     
 }
 
-var r_group = {
+var hiragana_r_group = {
+    "system": "Hiragana",
     "name": "R Group",
     "active":true,
     "chars": {
@@ -99,7 +107,8 @@ var r_group = {
     
 }
 
-var misc_group = {
+var hiragana_misc_group = {
+    "system": "Hiragana",
     "name": "Misc. Group",
     "active":true,
     "chars": {
@@ -114,7 +123,8 @@ var misc_group = {
 }
 
 
-var accent_group = {
+var hiragana_accent_group = {
+    "system": "Hiragana",
     "name": "Accents",
     "active":true,
     "chars": {
@@ -146,7 +156,8 @@ var accent_group = {
           
 };
 
-var combo_group = {
+var hiragana_combo_group = {
+    "system": "Hiragana",
     "name": "Combinations",
     "active":true,
     "chars": {
@@ -187,4 +198,4 @@ var combo_group = {
     
 }
 
-var charsets = [vowels, k_group, s_group, t_group, n_group, h_group, m_group, r_group, misc_group, accent_group, combo_group]
+var hiragana_charsets = [hiragana_vowels, hiragana_k_group, hiragana_s_group, hiragana_t_group, hiragana_n_group, hiragana_h_group, hiragana_m_group, hiragana_r_group, hiragana_misc_group, hiragana_accent_group, hiragana_combo_group]
