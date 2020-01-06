@@ -80,14 +80,18 @@
                     </div>
                     <div class="grid-x grid-padding-x" style="padding: 1em 1em 1em 1em">
                         <p>Choose which sets of characters you would like to practice:</p>
-                        <div class="cell small-12 medium-6">
+                        <div class="cell small-12 medium-4">
                             <input type='checkbox' style="font-size:2em";  name='Hiragana' id="hiragana_global_tog"><label for='hiragana_global_tog'>Hiragana</label>
                             <div id="hiragana_status_wrapper"></div>
                         </div>
                         <div class="system_seperator"></div>
-                        <div class="cell small-12 medium-6">
+                        <div class="cell small-12 medium-4">
                                 <input type='checkbox' style="font-size:2em";  name='Katakana' id="katakana_global_tog"><label for='katakana_global_tog'>Katakana</label>
                                 <div id="katakana_status_wrapper"></div>
+                        </div>
+                        <div class="cell small-12 medium-4">
+                            <input type='checkbox' style="font-size:2em";  name='Kanji' id="kanji_global_tog"><label for='kanji_global_tog'>Kanji</label>
+                            <div id="kanji_status_wrapper"></div>
                         </div>
                         
                     </div>
@@ -104,6 +108,7 @@
         
         <script src="js/hiragana.js"></script>
         <script src="js/katakana.js"></script>
+        <script src="js/kanji.js"></script>
         <script src="js/game.js"></script>
 
         <script>
@@ -139,6 +144,9 @@
             });
             $("#katakana_global_tog").click(function(){
                 update_kana_sys_children("Katakana");
+            });
+            $("#kanji_global_tog").click(function(){
+                update_kana_sys_children("Kanji");
             });
             $("#hiragana_global_tog").click(function(){
                 update_kana_sys_children("Hiragana");

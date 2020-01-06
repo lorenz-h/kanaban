@@ -1,4 +1,4 @@
-var charsets = hiragana_charsets.concat(katakana_charsets); 
+var charsets = hiragana_charsets.concat(katakana_charsets).concat(kanji_charsets); 
 
 
 function new_kana() {
@@ -106,13 +106,18 @@ function create_charset_checkbox(state, name, system){
 function populate_settings_menu(){
     $("#hiragana_status_wrapper").empty();
     $("#katakana_status_wrapper").empty();
+    $("#kanji_status_wrapper").empty();
     charsets.forEach(function (chset, index) {
         var html_entity = create_charset_checkbox(chset["active"], chset["name"], chset["system"])
         console.log("Created settings entry:", html_entity)
         if (chset["system"] == "Hiragana"){
             $("#hiragana_status_wrapper").append(html_entity)
-        } else {
+        } else if (chset["system"] == "Katakana") {
             $("#katakana_status_wrapper").append(html_entity)
+        } else if (chset["system"] == "Kanji") {
+            $("#kanji_status_wrapper").append(html_entity)
+        } else {
+            throw "Invalid charset system"
         }
         
     });
@@ -122,8 +127,12 @@ function update_kana_sys_children(system=String){
 
     if (system == "Hiragana"){
         var status = $("#hiragana_global_tog").prop("checked");
-    } else {
+    } else if (system == "Katakana") {
         var status = $("#katakana_global_tog").prop("checked");
+    } else if (system == "Kanji") {
+        var status = $("#kanji_global_tog").prop("checked");
+    } else {
+        throw "Encountered invalid charset system"
     }
     console.log("Updating all sets of system", system, "to status", status);
     
